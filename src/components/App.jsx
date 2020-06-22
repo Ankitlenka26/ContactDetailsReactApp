@@ -8,29 +8,28 @@ function App() {
   });
 
   function changeDetails(event) {
-    const inputName = event.target.name;
-    const newValue = event.target.value;
-    console.log(inputName);
+    const { name, value } = event.target;
+    // console.log(inputName);
 
     setContact(prevValue => {
       console.log(prevValue);
-      if (inputName === "fName") {
+      if (name === "fName") {
         return {
-          fName: newValue,
+          fName: value,
           lName: prevValue.lName,
           email: prevValue.email
         };
-      } else if (inputName === "lName") {
+      } else if (name === "lName") {
         return {
           fName: prevValue.fName,
-          lName: newValue,
+          lName: value,
           email: prevValue.email
         };
       } else {
         return {
           fName: prevValue.fName,
           lName: prevValue.lName,
-          email: newValue
+          email: value
         };
       }
     });
@@ -44,19 +43,19 @@ function App() {
       <p>{contact.email}</p>
       <form>
         <input
-          onchange={changeDetails}
+          onChange={changeDetails}
           name="fName"
           placeholder="First Name"
           value={contact.fName}
         />
         <input
-          onchange={changeDetails}
+          onChange={changeDetails}
           name="lName"
           placeholder="Last Name"
           value={contact.lName}
         />
         <input
-          onchange={changeDetails}
+          onChange={changeDetails}
           name="email"
           placeholder="Email"
           value={contact.email}
